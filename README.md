@@ -1,7 +1,7 @@
 ### Demo
 https://assets-code-challenge.vercel.app/
 
-## Install the dependencies
+### Install the dependencies
 ```bash
 npm install
 ```
