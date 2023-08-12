@@ -1,18 +1,39 @@
-# Vue 3 + TypeScript + Vite
+### Demo
+https://assets-code-challenge.vercel.app/
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## Install the dependencies
+```bash
+npm install
+```
 
-## Recommended IDE Setup
+### Start the app in development mode (hot-code reloading, error reporting, etc.)
+```bash
+npm run dev
+```
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+### Run the tests
+```bash
+npm run test
+```
 
-## Type Support For `.vue` Imports in TS
+### Build the app for production
+```bash
+npm run build
+```
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+### Folder structure
+- **features**: The application's main features should be placed here. Each feature has a folder containing all its domain types, services, hooks and components.
+- **components**: Contains all of the project's global components and component library(If multiple teams are working on the component library, We should choose other solutions such as creating a core folder, creating a package, setting up a monorepo or switching to micro frontend.)
+- **services**: All global services or configurations related to sending requests to the server should be placed here.
+- stores
+- layouts
+- types
+  
+**Rule**: If a type, component or service is widely used, it should be in the global directories; otherwise, it should be defined near its domain under the features folder.
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+### About functions(src/features/Asset/AssetFunctions.ts)...
+1. **nestedAssetBuilder**: It's a pure function that recursively generates the hierarchies of assets. We can write it in a declarative way(e.g. using lodash's functions or map and reduce) for better code readability, but cause the performance is essential in this case, using for loops is preferred.
+2. **assetsStatisticsCalculator**: It will return an asset's statistics as expected. If it doesn't have any data, it will recursively look for children's statistics and returns an aggregated value of its children.
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+###  Assumptions
+- Asset IDs are sequential
