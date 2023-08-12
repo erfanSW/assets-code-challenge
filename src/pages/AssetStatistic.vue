@@ -33,7 +33,7 @@ const isStatisticsCalculatedByChildren = computed(() => {
 </script>
 
 <template>
-  <router-link to="/assets">
+  <router-link to="/assets/home">
     <div class="mb-8 text-gray-700 text-sm">
       <span class="font-extrabold text-xl">&larr;</span> home
     </div>

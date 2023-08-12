@@ -6,7 +6,7 @@ import AssetsHome from "@/pages/AssetsHome.vue";
 const routes = [
   {
     path: "",
-    redirect: { name: "assets" },
+    redirect: { name: "assetsHome" },
   },
   {
     path: "/assets",
@@ -14,10 +14,12 @@ const routes = [
     component: AssetsLayout,
     children: [
       {
-        path: "",
+        name: "assetsHome",
+        path: "home",
         component: AssetsHome,
       },
       {
+        name: "assetStatistic",
         path: ":id",
         component: AssetStatistic,
       },
